@@ -35,7 +35,7 @@ namespace UrlShortener.WebAPI.DAL
 
         void ILinkRepository.DeleteAllLinks()
         {
-            _context.Links.RemoveRange(context.Links);
+            _context.Links.RemoveRange(_context.Links);
         }
 
         public void Save()
