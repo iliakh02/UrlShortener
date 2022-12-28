@@ -19,6 +19,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.AddTransient<IUrlShortenerService, UrlShortenerService>();
 builder.Services.AddTransient<ILinkRepository, LinkRepository>();
 
+builder.Services.AddCors(options => options.AddPolicy("default", policy =>
+{
+    policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+}));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -32,6 +37,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseCors("default");
+//                                          .AllowAnyMethod()
+//                                          .AllowAnyHeader());
 
 app.MapControllers();
 
