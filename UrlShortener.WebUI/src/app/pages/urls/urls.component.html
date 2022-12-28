@@ -1,0 +1,16 @@
+<h2>All urls</h2>
+
+<table>
+  <tr>
+    <th>Short Url</th>
+    <th>Full Url</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let url of urls">
+    <td>{{ url.shortUrl }}</td>
+    <td>{{ url.fullUrl }}</td>
+    <td>
+        <a href="">Delete</a>
+    </td>
+  </tr>
+</table>
