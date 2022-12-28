@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UrlShortener.WebAPI.DAL;
 using UrlShortener.WebAPI.Models;
+using UrlShortener.WebAPI.Models.Dtos;
 using UrlShortener.WebAPI.Services;
 using UrlShortener.WebAPI.Services.Abstract;
 
@@ -37,20 +38,22 @@ namespace UrlShortener.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IEnumerable<Link>> GetUrlInfo()
+        [Route("info/{shortUrl}")]
+        public async Task<Link> GetUrlInfo(string shortUrl)
         {
-            return await _linkRepository.GetAllLinksAsync();
+            return await _linkRepository.GetLinkByShortUrlAsync(shortUrl);
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task CreateNew([FromBody]string fullUrl)
+        public async Task Create([FromBody] CreateUrlDto urlDto)
         {
-            string shortUrl = _urlShortenerService.GenerateShortURL(fullUrl);
+            if(!ModelState.IsValid)
+                BadRequest(ModelState);
+            string shortUrl = _urlShortenerService.GenerateShortURL(urlDto.FullUrl);
             var newLink = new Link
             {
-                FullUrl = fullUrl,
+                FullUrl = urlDto.FullUrl,
                 ShortUrl = shortUrl,
                 CreatedDate = DateTime.Now,
                 CreatedBy = "Secret User"

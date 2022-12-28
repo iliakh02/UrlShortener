@@ -21,7 +21,10 @@
     </table>
 
     <div class="modifying-block">
-        <a class="link-button" href="#">Create New</a>
+        <button (click)="openModal(modalTemplate)">Create new</button>
+        <ng-template #modalTemplate>
+            <app-create-new-url [dataFromParent]="modalRef" (onRefreshData)="refreshData()"></app-create-new-url>
+        </ng-template>
         <form action="api/Url/deleteAll">
             <button type="submit">Delete</button>
         </form>

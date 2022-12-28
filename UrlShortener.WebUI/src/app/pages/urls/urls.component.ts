@@ -1,8 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-// import { remove } from '@fortawesome/fontawesome-svg-core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Url } from 'src/app/models/url';
+import { UrlService } from 'src/app/services/url.service';
+// import
 
 @Component({
   selector: 'app-root',
@@ -13,28 +21,28 @@ export class UrlsComponent implements OnInit {
   public urls?: Url[];
   private httpClient: HttpClient;
   public faTrash = faTrash;
-  constructor(httpClient: HttpClient) {
+  public modalRef?: BsModalRef;
+  @Output() refreshingData = new EventEmitter<any>();
+
+  constructor(
+    httpClient: HttpClient,
+    private modalService: BsModalService,
+    private urlService: UrlService
+  ) {
     this.httpClient = httpClient;
   }
   async ngOnInit(): Promise<void> {
-    console.log('--- Calling api get method!');
-
-    // let response = await axios.get('/api/Urls/allUrls');
-    // this.url = response.data;
-    // console.log('-----x----' + this.url);
-
-    this.httpClient.get<Url[]>('/api/Urls/allUrls').subscribe((response) => {
+    this.refreshData();
+  }
+  refreshData(): void {
+    this.urlService.getAllUrls().subscribe((response) => {
       this.urls = response;
     });
   }
-
-  title = 'UrlShortener';
-}
-
-interface Url {
-  id: number;
-  shortUrl: string;
-  fullUrl: string;
-  createdBy: string;
-  createdDate: Date;
+  dataRefresher(): any {
+    return () => this.refreshData();
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 }
