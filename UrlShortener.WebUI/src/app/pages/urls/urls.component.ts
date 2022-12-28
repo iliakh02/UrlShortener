@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+// import { remove } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 @Component({
@@ -10,6 +12,7 @@ import axios from 'axios';
 export class UrlsComponent implements OnInit {
   public urls?: Url[];
   private httpClient: HttpClient;
+  public faTrash = faTrash;
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
   }

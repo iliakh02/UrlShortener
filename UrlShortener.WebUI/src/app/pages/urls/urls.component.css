@@ -1,24 +1,68 @@
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    border-radius: 5px;
-    width: 80%;
-  }
-  
-  th {
-    background-color: #444;
-    color: #fff;
-    /* border: 1px solid red; */    
-    border: 1px solid #444;
-  }
-  td {
-    border: 1px solid #444;
-  }
-  td, th {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border-radius: 5px;
+  width: 100%;
+}
+
+th {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+td {
+  border-bottom: 1px solid #444;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td > form > button {
+  background: inherit;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  position: relative;
+  /* margin: 0 100%; */
+  transform: translate(-50%);
+  right: -50%;
+
+}
+
+.delete-column {
+  width: 50px;
+}
+
+.modifying-block {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.link-button, button {
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 1px solid black;
+  background: #444;
+  padding: 5px 10px;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}

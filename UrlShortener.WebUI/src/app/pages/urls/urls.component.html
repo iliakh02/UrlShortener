@@ -1,16 +1,29 @@
-<h2>All urls</h2>
+<div class="container">
+    <h1 class="title">All urls</h1>
 
-<table>
-  <tr>
-    <th>Short Url</th>
-    <th>Full Url</th>
-    <th>Delete</th>
-  </tr>
-  <tr *ngFor="let url of urls">
-    <td>{{ url.shortUrl }}</td>
-    <td>{{ url.fullUrl }}</td>
-    <td>
-        <a href="">Delete</a>
-    </td>
-  </tr>
-</table>
+    <table>
+        <tr>
+            <th>Short Url</th>
+            <th>Full Url</th>
+            <th class="delete-column">Delete</th>
+        </tr>
+        <tr *ngFor="let url of urls">
+            <td>{{ url.shortUrl }}</td>
+            <td>{{ url.fullUrl }}</td>
+            <td class="delete-column">
+                <form action="api/Url/delete/{{url.id}}">
+                    <button type="submit">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <div class="modifying-block">
+        <a class="link-button" href="#">Create New</a>
+        <form action="api/Url/deleteAll">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>
