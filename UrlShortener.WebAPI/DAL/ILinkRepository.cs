@@ -4,12 +4,12 @@ namespace UrlShortener.WebAPI.DAL
 {
     public interface ILinkRepository
     {
-        IEnumerable<Link> GetAllLinks();
-        Link GetLinkByShortUrl(string shortLink);
-        void AddLink(Link link);
-        void DeleteLinkById(int id);
+        Task<IEnumerable<Link>> GetAllLinksAsync();
+        Task<Link> GetLinkByShortUrlAsync(string shortLink);
+        Task AddLinkAsync(Link link);
+        Task DeleteLinkByIdAsync(int id);
         void DeleteAllLinks();
-        void Save();
+        Task SaveAsync();
 
     }
 }

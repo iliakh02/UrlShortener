@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Microsoft.EntityFrameworkCore;
 using UrlShortener.WebAPI.Models;
 
 namespace UrlShortener.WebAPI.DAL
@@ -12,35 +13,35 @@ namespace UrlShortener.WebAPI.DAL
             _context = context;
         }
 
-        public void AddLink(Link link)
+        public async Task AddLinkAsync(Link link)
         {
-            _context.Links.Add(link);
+            await _context.Links.AddAsync(link);
         }
 
-        public void DeleteLinkById(int id)
+        public async Task DeleteLinkByIdAsync(int id)
         {
-            Link link = _context.Links.Find(id);
+            Link link = await _context.Links.FirstOrDefaultAsync(x => x.Id == id);
             _context.Links.Remove(link);
         }
 
-        public IEnumerable<Link> GetAllLinks()
+        public async Task<IEnumerable<Link>> GetAllLinksAsync()
         {
-            return _context.Links.ToList();
+            return await _context.Links.ToListAsync();
         }
 
-        public Link GetLinkByShortUrl(string shortLink)
+        public async Task<Link> GetLinkByShortUrlAsync(string shortLink)
         {
-            return _context.Links.FirstOrDefault();
+            return await _context.Links.FirstOrDefaultAsync();
         }
 
-        void ILinkRepository.DeleteAllLinks()
+        public void DeleteAllLinks()
         {
             _context.Links.RemoveRange(_context.Links);
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
 
@@ -55,14 +56,14 @@ namespace UrlShortener.WebAPI.DAL
 
         protected virtual void Dispose(bool disposing)
         {
-            if(!this._disposed)
+            if (!this._disposed)
             {
-                if(disposing)
+                if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this._disposed= true;
+            this._disposed = true;
         }
     }
 }
