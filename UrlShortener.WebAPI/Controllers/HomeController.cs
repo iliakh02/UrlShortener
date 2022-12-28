@@ -17,9 +17,11 @@ namespace UrlShortener.WebAPI.Controllers
 
         [HttpGet]
         [Route("getShortLink")]
-        public string GetShortLink(string longLink)
+        public string GetShortLink()
         {
-            return UrlShortenerService.GenerateShortURL(longLink);
+            Console.WriteLine("--------Call get method!!!");
+            var x = UrlShortenerService.GenerateShortURL("https://www.linkedin.com/in/mrfesfsgdgesst/");
+            return x;
         }
     }
 }
