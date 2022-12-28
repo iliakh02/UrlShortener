@@ -45,7 +45,7 @@ namespace UrlShortener.WebAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task CreateNewUrl([FromBody]string fullUrl)
+        public async Task CreateNew([FromBody]string fullUrl)
         {
             string shortUrl = _urlShortenerService.GenerateShortURL(fullUrl);
             var newLink = new Link
@@ -58,6 +58,24 @@ namespace UrlShortener.WebAPI.Controllers
             await _linkRepository.AddLinkAsync(newLink);
             await _linkRepository.SaveAsync();
             Ok(shortUrl);
+        }
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task DeleteUrlById(int id)
+        {
+            await _linkRepository.DeleteLinkByIdAsync(id);
+            await _linkRepository.SaveAsync();
+            Ok();
+        }
+
+        [HttpDelete]
+        [Route("deleteAll")]
+        public async Task DeleteUrlById()
+        {
+            _linkRepository.DeleteAllLinks();
+            await _linkRepository.SaveAsync();
+            Ok();
         }
     }
 }
