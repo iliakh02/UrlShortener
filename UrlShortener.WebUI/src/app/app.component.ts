@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     async ngOnInit(): Promise<void> {
       console.log("--- Calling api get method!");
 
-      let responce = await axios.get('/api/Home/getShortLink');
+      let responce = await axios.get('/api/Urls/getShortLink');
       this.url = responce.data;
       console.log("-----x----" + this.url);
 
