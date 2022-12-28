@@ -1,21 +1,24 @@
-using HashidsNet;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
+using UrlShortener.WebAPI.DAL;
+using UrlShortener.WebAPI.Models;
 using UrlShortener.WebAPI.Services;
 using UrlShortener.WebAPI.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+string dbConnectionString = builder.Configuration.GetConnectionString("UrlShortenerDb");
+builder.Services.AddDbContext<UrlShortenerDbContext>(options => options.UseSqlServer(dbConnectionString)); 
 builder.Services.AddTransient<IUrlShortenerService, UrlShortenerService>();
-builder.Services.AddTransient<IHashids, Hashids>();
+builder.Services.AddTransient<ILinkRepository, LinkRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
