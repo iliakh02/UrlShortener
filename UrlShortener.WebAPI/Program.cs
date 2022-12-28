@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using UrlShortener.WebAPI.DAL;
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 string dbConnectionString = builder.Configuration.GetConnectionString("UrlShortenerDb");
 builder.Services.AddDbContext<UrlShortenerDbContext>(options => options.UseSqlServer(dbConnectionString)); 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UrlShortenerDbContext>();
 builder.Services.AddTransient<IUrlShortenerService, UrlShortenerService>();
 builder.Services.AddTransient<ILinkRepository, LinkRepository>();
 
@@ -26,6 +28,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
