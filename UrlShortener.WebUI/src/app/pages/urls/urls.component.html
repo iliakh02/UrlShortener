@@ -1,0 +1,41 @@
+<div class="container">
+    <h1 class="title">All urls</h1>
+
+    <table>
+        <tr>
+            <th>Short Url</th>
+            <th>Full Url</th>
+            <th class="delete-column">Delete</th>
+        </tr>
+        <tr *ngFor="let url of urls">
+            <td><a href="https://localhost:7126/{{url.shortUrl}}">https://localhost:7126/{{ url.shortUrl }}</a></td>
+            <td>{{ url.fullUrl }}</td>
+            <td class="delete-column">
+                <button (click)="openDeleteUrlModal(deleteUrlModalTemplate, url.id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="modifying-block">
+        <button (click)="openCreateNewUrlModal(createNewUrlModalTemplate)">Create new</button>
+        <ng-template #createNewUrlModalTemplate>
+            <app-create-new-url [dataFromParent]="createNewUrlModalRef"
+                (onRefreshData)="refreshData()"></app-create-new-url>
+        </ng-template>
+
+        <button (click)="openDeleteAllUrlsModal(deleteAllUrlsModalTemplate)">Delete All</button>
+        <ng-template #deleteAllUrlsModalTemplate>
+            <app-delete-all-urls [dataFromParent]="deleteAllUrlsModalRef"
+                (onRefreshData)="refreshData()"></app-delete-all-urls>
+        </ng-template>
+    </div>
+</div>
+
+    
+<ng-template #deleteUrlModalTemplate>
+    <app-delete-url [dataFromParent]="deleteUrlModalRef"
+        (onDeleteUrl)="deleteUrlById() "></app-delete-url>
+</ng-template>

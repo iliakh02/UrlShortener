@@ -1,0 +1,56 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border-radius: 5px;
+  width: 100%;
+}
+
+th {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+td {
+  border-bottom: 1px solid #000;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td > form > button {
+  background: inherit;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  position: relative;
+  /* margin: 0 100%; */
+  transform: translate(-50%);
+  right: -50%;
+
+}
+
+.delete-column {
+  width: 50px;
+}
+
+.modifying-block {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  padding: 20px 0;
+}
+

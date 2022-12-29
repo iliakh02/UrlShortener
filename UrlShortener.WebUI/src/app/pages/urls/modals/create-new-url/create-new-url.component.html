@@ -1,0 +1,17 @@
+<div class="modal-container">
+  <h2>Create new url</h2>
+  <form [formGroup]="createNewUrlForm" (ngSubmit)="onSubmit()" class="create-new-url-form">
+    <div class="input-field">
+      <label for="Full Url">
+        Name
+      </label>
+      <input id="fullUrl" type="text" formControlName="fullUrl" required minlength="4">
+      
+    </div>
+    <button class="button" type="submit">Create</button>
+  
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="modalRef?.hide()">Close</button>
+</div>

@@ -29,9 +29,9 @@ namespace UrlShortener.WebAPI.DAL
             return await _context.Links.ToListAsync();
         }
 
-        public async Task<Link> GetLinkByShortUrlAsync(string shortLink)
+        public async Task<Link> GetLinkByShortUrlAsync(string shortUrl)
         {
-            return await _context.Links.FirstOrDefaultAsync();
+            return await _context.Links.FirstOrDefaultAsync(x => x.ShortUrl == shortUrl);
         }
 
         public void DeleteAllLinks()

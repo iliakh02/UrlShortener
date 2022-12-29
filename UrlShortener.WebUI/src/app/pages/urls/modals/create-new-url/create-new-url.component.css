@@ -1,0 +1,28 @@
+.alert {
+  color: rgb(173, 0, 0);
+}
+.modal-container {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.create-new-url-form {
+  width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+.input-field {
+  display: block;
+  width: 100%;;
+}
+
+.input-field > input {
+  width: 100%;
+}
+.button {
+  margin: 20px 0;
+}
