@@ -1,16 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  TemplateRef,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Url } from 'src/app/models/url';
 import { UrlService } from 'src/app/services/url.service';
-// import
 
 @Component({
   selector: 'app-root',
@@ -19,17 +12,14 @@ import { UrlService } from 'src/app/services/url.service';
 })
 export class UrlsComponent implements OnInit {
   public urls?: Url[];
-  private httpClient: HttpClient;
   public faTrash = faTrash;
-  public modalRef?: BsModalRef;
-  @Output() refreshingData = new EventEmitter<any>();
+  public createNewUrlModalRef?: BsModalRef;
+  public deleteAllUrlsModalRef?: BsModalRef;
 
   constructor(
     httpClient: HttpClient,
     private modalService: BsModalService,
-    private urlService: UrlService
-  ) {
-    this.httpClient = httpClient;
+    private urlService: UrlService) {
   }
   async ngOnInit(): Promise<void> {
     this.refreshData();
@@ -39,10 +29,12 @@ export class UrlsComponent implements OnInit {
       this.urls = response;
     });
   }
-  dataRefresher(): any {
-    return () => this.refreshData();
+
+  openCreateNewUrlModal(template: TemplateRef<any>) {
+    this.createNewUrlModalRef = this.modalService.show(template);
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+
+  openDeleteAllUrlsModal(template: TemplateRef<any>) {
+    this.deleteAllUrlsModalRef = this.modalService.show(template);
   }
 }

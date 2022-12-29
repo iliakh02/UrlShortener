@@ -21,12 +21,14 @@
     </table>
 
     <div class="modifying-block">
-        <button (click)="openModal(modalTemplate)">Create new</button>
-        <ng-template #modalTemplate>
-            <app-create-new-url [dataFromParent]="modalRef" (onRefreshData)="refreshData()"></app-create-new-url>
+        <button (click)="openCreateNewUrlModal(createNewUrlModalTemplate)">Create new</button>
+        <ng-template #createNewUrlModalTemplate>
+            <app-create-new-url [dataFromParent]="createNewUrlModalRef" (onRefreshData)="refreshData()"></app-create-new-url>
         </ng-template>
-        <form action="api/Url/deleteAll">
-            <button type="submit">Delete</button>
-        </form>
+
+        <button (click)="openDeleteAllUrlsModal(deleteAllUrlsModalTemplate)">Delete All</button>
+        <ng-template #deleteAllUrlsModalTemplate>
+            <app-delete-all-urls [dataFromParent]="deleteAllUrlsModalRef" (onRefreshData)="refreshData()"></app-delete-all-urls>
+        </ng-template>
     </div>
 </div>

@@ -28,7 +28,6 @@ export class CreateNewUrlComponent {
         console.log(data);
       });
     this.onRefreshData.emit();
-    console.warn('Your order has been submitted', this.createNewUrlForm.value);
     this.createNewUrlForm.reset();
   }
 }

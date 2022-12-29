@@ -7,17 +7,22 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { UrlsComponent } from './pages/urls/urls.component';
-import { CreateNewUrlComponent } from './pages/urls/ng-materials/create-new-url/create-new-url.component';
+import { CreateNewUrlComponent } from './pages/urls/modals/create-new-url/create-new-url.component';
 import { UrlService } from './services/url.service';
+import { DeleteAllUrlsComponent } from './pages/urls/modals/delete-all-urls/delete-all-urls.component';
 
 @NgModule({
-  declarations: [UrlsComponent, CreateNewUrlComponent],
+  declarations: [
+    UrlsComponent,
+    CreateNewUrlComponent,
+    DeleteAllUrlsComponent,
+    DeleteAllUrlsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
-    // BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,

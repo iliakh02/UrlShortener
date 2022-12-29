@@ -6,13 +6,13 @@ table {
 }
 
 th {
-  background-color: #444;
+  background-color: #000;
   color: #fff;
-  border: 1px solid #444;
+  border: 1px solid #000;
 }
 
 td {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #000;
 }
 
 td,
@@ -22,8 +22,8 @@ th {
 }
 
 tr {
-  border-left: 1px solid #444;
-  border-right: 1px solid #444;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 tr:nth-child(even) {
@@ -33,7 +33,7 @@ tr:nth-child(even) {
 td > form > button {
   background: inherit;
   border: none;
-  color: #444;
+  color: #000;
   cursor: pointer;
   position: relative;
   /* margin: 0 100%; */
@@ -54,15 +54,3 @@ td > form > button {
   padding: 20px 0;
 }
 
-.link-button, button {
-  text-decoration: none;
-  color: #fff;
-  border: none;
-  border-radius: 1px solid black;
-  background: #444;
-  padding: 5px 10px;
-  font-family: arial, sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  cursor: pointer;
-}
