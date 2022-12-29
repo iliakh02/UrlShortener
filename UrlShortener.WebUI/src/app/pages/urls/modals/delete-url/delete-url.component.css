@@ -1,0 +1,32 @@
+.modal-container {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  padding: 20px;
+}
+.yes-btn {
+  color:#000;
+  border: 1px solid #000;
+  transition: .2s;
+}
+
+.yes-btn:hover {
+  color:#fff;
+  background: #000;
+}
+
+.no-btn {
+  color:#fff;
+  border: 1px solid #000;
+  background: #000;
+  transition: .2s;
+}
+.no-btn:hover {
+  color:#000;
+  border: 1px solid #000;
+  background: #fff;
+}

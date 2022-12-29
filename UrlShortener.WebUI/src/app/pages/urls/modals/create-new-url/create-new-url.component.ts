@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { UrlService } from 'src/app/services/url.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-create-new-url',
@@ -21,13 +22,10 @@ export class CreateNewUrlComponent {
     private urlService: UrlService
   ) {}
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     const longUrl = this.createNewUrlForm.value.fullUrl;
-    if (!!longUrl)
-      this.urlService.createNewUrl(longUrl).subscribe((data) => {
-        console.log(data);
-      });
+    if (!!longUrl) await firstValueFrom(this.urlService.createNewUrl(longUrl));
     this.onRefreshData.emit();
-    this.createNewUrlForm.reset();
+    this.modalRef?.hide();
   }
 }

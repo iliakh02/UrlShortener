@@ -74,7 +74,7 @@ namespace UrlShortener.WebAPI.Controllers
 
         [HttpDelete]
         [Route("deleteAll")]
-        public async Task DeleteUrlById()
+        public async Task DeleteAll()
         {
             _linkRepository.DeleteAllLinks();
             await _linkRepository.SaveAsync();

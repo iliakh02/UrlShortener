@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { UrlService } from 'src/app/services/url.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-delete-all-urls',
@@ -21,10 +22,9 @@ export class DeleteAllUrlsComponent {
     private urlService: UrlService
   ) {}
 
-  approveDeleting(): void {
-    this.urlService.deleteAllUrls().subscribe((data) => {
-      console.log(data);
-    });
+  async approveDeleting(): Promise<void> {
+    await firstValueFrom(this.urlService.deleteAllUrls());
     this.onRefreshData.emit();
+    this.modalRef?.hide();
   }
 }

@@ -34,6 +34,12 @@ export class UrlService {
       .pipe(catchError(this.handleError));
   }
 
+  deleteUrl(id: number): Observable<any> {
+    return this.http
+      .delete(`${this.apiUri}/delete/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

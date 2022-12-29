@@ -10,13 +10,14 @@ import { UrlsComponent } from './pages/urls/urls.component';
 import { CreateNewUrlComponent } from './pages/urls/modals/create-new-url/create-new-url.component';
 import { UrlService } from './services/url.service';
 import { DeleteAllUrlsComponent } from './pages/urls/modals/delete-all-urls/delete-all-urls.component';
+import { DeleteUrlComponent } from './pages/urls/modals/delete-url/delete-url.component';
 
 @NgModule({
   declarations: [
     UrlsComponent,
     CreateNewUrlComponent,
     DeleteAllUrlsComponent,
-    DeleteAllUrlsComponent,
+    DeleteUrlComponent,
   ],
   imports: [
     BrowserModule,
