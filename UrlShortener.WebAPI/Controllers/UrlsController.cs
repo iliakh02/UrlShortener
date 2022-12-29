@@ -35,10 +35,13 @@ namespace UrlShortener.WebAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task Create([FromBody] CreateUrlDto urlDto)
+        public async Task<IActionResult> Create([FromBody] CreateUrlDto urlDto)
         {
             if (!ModelState.IsValid)
-                BadRequest(ModelState);
+                return BadRequest(ModelState);
+            var urls = await _linkRepository.GetAllLinksAsync();
+            if (urls.FirstOrDefault(x => x.FullUrl == urlDto.FullUrl) != null)
+                return BadRequest();
             string shortUrl = _urlShortenerService.GenerateShortURL(urlDto.FullUrl);
             var newLink = new Link
             {
@@ -49,7 +52,7 @@ namespace UrlShortener.WebAPI.Controllers
             };
             await _linkRepository.AddLinkAsync(newLink);
             await _linkRepository.SaveAsync();
-            Ok(shortUrl);
+            return Ok(shortUrl);
         }
 
         [HttpDelete]
