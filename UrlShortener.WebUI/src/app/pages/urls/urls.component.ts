@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -20,7 +19,6 @@ export class UrlsComponent implements OnInit {
   private deleteUrlId: number | undefined;
 
   constructor(
-    httpClient: HttpClient,
     private modalService: BsModalService,
     private urlService: UrlService,
   ) {}

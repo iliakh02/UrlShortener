@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UrlShortener.WebAPI.DAL;
 using UrlShortener.WebAPI.Models;
 using UrlShortener.WebAPI.Models.Dtos;
-using UrlShortener.WebAPI.Services;
 using UrlShortener.WebAPI.Services.Abstract;
 
 namespace UrlShortener.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/urls")]
     [ApiController]
     public class UrlsController : ControllerBase
     {
@@ -20,15 +18,6 @@ namespace UrlShortener.WebAPI.Controllers
             _urlShortenerService = urlShortenerService;
             _linkRepository = linkRepository;
         }
-
-        //[HttpGet]
-        //[Route("getShortLink")]
-        //public string GetShortLink()
-        //{
-        //    Console.WriteLine("--------Call get method!!!");
-        //    var x = _urlShortenerService.GenerateShortURL("https://www.linkedin.com/in/mrfesfsgdgesst/");
-        //    return x;
-        //}
 
         [HttpGet]
         [Route("")]
@@ -48,7 +37,7 @@ namespace UrlShortener.WebAPI.Controllers
         [Route("create")]
         public async Task Create([FromBody] CreateUrlDto urlDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 BadRequest(ModelState);
             string shortUrl = _urlShortenerService.GenerateShortURL(urlDto.FullUrl);
             var newLink = new Link
@@ -57,7 +46,7 @@ namespace UrlShortener.WebAPI.Controllers
                 ShortUrl = shortUrl,
                 CreatedDate = DateTime.Now,
                 CreatedBy = "Secret User"
-            }; 
+            };
             await _linkRepository.AddLinkAsync(newLink);
             await _linkRepository.SaveAsync();
             Ok(shortUrl);

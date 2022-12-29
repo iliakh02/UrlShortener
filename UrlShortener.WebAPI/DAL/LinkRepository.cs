@@ -1,12 +1,11 @@
-﻿using System.Xml;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using UrlShortener.WebAPI.Models;
 
 namespace UrlShortener.WebAPI.DAL
 {
     public class LinkRepository : ILinkRepository, IDisposable
     {
-        private UrlShortenerDbContext _context;
+        private readonly UrlShortenerDbContext _context;
 
         public LinkRepository(UrlShortenerDbContext context)
         {
@@ -43,8 +42,6 @@ namespace UrlShortener.WebAPI.DAL
         {
             await _context.SaveChangesAsync();
         }
-
-
 
         private bool _disposed = false;
 

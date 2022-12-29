@@ -173,7 +173,6 @@ namespace UrlShortener.UnitTests
             Assert.Equal(0, result.Count());
         }
 
-
         private async Task<ILinkRepository> GetRepositoryWithMockedData(Link[] links)
         {
             var repo = new LinkRepository(new UrlShortenerDbContext(_dbContextOptions));

@@ -13,12 +13,10 @@
   border: 1px solid #000;
   transition: .2s;
 }
-
 .yes-btn:hover {
   color:#fff;
   background: #000;
 }
-
 .no-btn {
   color:#fff;
   border: 1px solid #000;

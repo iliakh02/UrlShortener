@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpResponse,
-} from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Url } from '../models/url';
 
@@ -13,7 +9,7 @@ import { Url } from '../models/url';
   providedIn: 'root',
 })
 export class UrlService {
-  apiUri: string = 'https://localhost:7126/api/Urls';
+  apiUri: string = 'https://localhost:7126/api/urls';
   constructor(private http: HttpClient) {}
 
   getAllUrls(): Observable<Url[]> {
