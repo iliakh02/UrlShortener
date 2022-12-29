@@ -8,7 +8,7 @@
             <th class="delete-column">Delete</th>
         </tr>
         <tr *ngFor="let url of urls">
-            <td>{{ url.shortUrl }}</td>
+            <td><a href="https://localhost:7126/{{url.shortUrl}}">https://localhost:7126/{{ url.shortUrl }}</a></td>
             <td>{{ url.fullUrl }}</td>
             <td class="delete-column">
                 <button (click)="openDeleteUrlModal(deleteUrlModalTemplate, url.id)">

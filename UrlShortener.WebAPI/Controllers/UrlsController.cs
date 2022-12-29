@@ -21,14 +21,14 @@ namespace UrlShortener.WebAPI.Controllers
             _linkRepository = linkRepository;
         }
 
-        [HttpGet]
-        [Route("getShortLink")]
-        public string GetShortLink()
-        {
-            Console.WriteLine("--------Call get method!!!");
-            var x = _urlShortenerService.GenerateShortURL("https://www.linkedin.com/in/mrfesfsgdgesst/");
-            return x;
-        }
+        //[HttpGet]
+        //[Route("getShortLink")]
+        //public string GetShortLink()
+        //{
+        //    Console.WriteLine("--------Call get method!!!");
+        //    var x = _urlShortenerService.GenerateShortURL("https://www.linkedin.com/in/mrfesfsgdgesst/");
+        //    return x;
+        //}
 
         [HttpGet]
         [Route("")]
@@ -79,6 +79,21 @@ namespace UrlShortener.WebAPI.Controllers
             _linkRepository.DeleteAllLinks();
             await _linkRepository.SaveAsync();
             Ok();
+        }
+
+        [HttpGet]
+        [Route("/{shortUrl}")]
+        public async Task<IActionResult> GetUrl(string shortUrl)
+        {
+            if (String.IsNullOrEmpty(shortUrl))
+                return BadRequest();
+
+            var link = await _linkRepository.GetLinkByShortUrlAsync(shortUrl);
+
+            if (link == null)
+                return NotFound();
+
+            return RedirectPermanent(link.FullUrl);
         }
     }
 }
